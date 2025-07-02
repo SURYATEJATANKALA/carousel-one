@@ -1,0 +1,735 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Carousel Container */
+.carousel-container {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    overflow: hidden;
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 50%, #3b82f6 100%);
+}
+
+/* Enhanced Floating Design Elements */
+.floating-elements {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+/* Floating Circles - More Visible */
+.floating-circle {
+    position: absolute;
+    border-radius: 50%;
+    background: linear-gradient(45deg, rgba(59, 130, 246, 0.25), rgba(139, 92, 246, 0.25));
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.circle-1 {
+    top: 15%;
+    left: 10%;
+    width: 140px;
+    height: 140px;
+    animation: float-slow 8s ease-in-out infinite;
+}
+
+.circle-2 {
+    bottom: 25%;
+    right: 15%;
+    width: 100px;
+    height: 100px;
+    animation: float-medium 6s ease-in-out infinite reverse;
+}
+
+.circle-3 {
+    top: 60%;
+    left: 5%;
+    width: 80px;
+    height: 80px;
+    animation: float-fast 4s ease-in-out infinite;
+}
+
+/* Floating Squares - More Visible */
+.floating-square {
+    position: absolute;
+    background: linear-gradient(45deg, rgba(249, 115, 22, 0.2), rgba(234, 88, 12, 0.2));
+    border-radius: 16px;
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.square-1 {
+    top: 30%;
+    right: 8%;
+    width: 120px;
+    height: 120px;
+    transform: rotate(15deg);
+    animation: rotate-float 10s linear infinite;
+}
+
+.square-2 {
+    bottom: 40%;
+    left: 20%;
+    width: 90px;
+    height: 90px;
+    transform: rotate(-20deg);
+    animation: rotate-float-reverse 12s linear infinite;
+}
+
+/* Floating Triangles - More Visible */
+.floating-triangle {
+    position: absolute;
+    width: 0;
+    height: 0;
+    filter: drop-shadow(0 0 10px rgba(255, 255, 255, 0.1));
+}
+
+.triangle-1 {
+    top: 20%;
+    right: 25%;
+    border-left: 40px solid transparent;
+    border-right: 40px solid transparent;
+    border-bottom: 70px solid rgba(13, 148, 136, 0.25);
+    animation: triangle-float 7s ease-in-out infinite;
+}
+
+.triangle-2 {
+    bottom: 30%;
+    left: 30%;
+    border-left: 35px solid transparent;
+    border-right: 35px solid transparent;
+    border-bottom: 60px solid rgba(168, 85, 247, 0.25);
+    animation: triangle-float-reverse 9s ease-in-out infinite;
+}
+
+/* Floating Blobs - More Visible */
+.floating-blob {
+    position: absolute;
+    border-radius: 50% 40% 60% 30%;
+    background: linear-gradient(45deg, rgba(139, 92, 246, 0.15), rgba(59, 130, 246, 0.15));
+    backdrop-filter: blur(3px);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.blob-1 {
+    top: 45%;
+    right: 5%;
+    width: 180px;
+    height: 140px;
+    animation: blob-morph 15s ease-in-out infinite;
+}
+
+.blob-2 {
+    bottom: 15%;
+    left: 8%;
+    width: 120px;
+    height: 100px;
+    animation: blob-morph-reverse 18s ease-in-out infinite;
+}
+
+/* Floating Lines - More Visible */
+.floating-line {
+    position: absolute;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+    height: 3px;
+    border-radius: 2px;
+}
+
+.line-1 {
+    top: 25%;
+    left: -100px;
+    width: 200px;
+    animation: line-move 12s linear infinite;
+}
+
+.line-2 {
+    bottom: 35%;
+    right: -150px;
+    width: 250px;
+    animation: line-move-reverse 14s linear infinite;
+}
+
+/* Floating Dots - More Visible */
+.floating-dot {
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.3);
+}
+
+.dot-1 {
+    top: 35%;
+    left: 15%;
+    animation: dot-twinkle 3s ease-in-out infinite;
+}
+
+.dot-2 {
+    top: 55%;
+    right: 20%;
+    animation: dot-twinkle 4s ease-in-out infinite 1s;
+}
+
+.dot-3 {
+    bottom: 45%;
+    left: 25%;
+    animation: dot-twinkle 3.5s ease-in-out infinite 2s;
+}
+
+.dot-4 {
+    top: 70%;
+    right: 30%;
+    animation: dot-twinkle 2.5s ease-in-out infinite 0.5s;
+}
+
+/* Additional Floating Elements for More Visual Impact */
+.floating-elements::before {
+    content: '';
+    position: absolute;
+    top: 10%;
+    right: 5%;
+    width: 60px;
+    height: 60px;
+    background: linear-gradient(45deg, rgba(34, 197, 94, 0.2), rgba(16, 185, 129, 0.2));
+    border-radius: 30% 70% 70% 30%;
+    animation: float-slow 10s ease-in-out infinite reverse;
+}
+
+.floating-elements::after {
+    content: '';
+    position: absolute;
+    bottom: 10%;
+    right: 25%;
+    width: 80px;
+    height: 80px;
+    background: linear-gradient(45deg, rgba(236, 72, 153, 0.2), rgba(219, 39, 119, 0.2));
+    border-radius: 40% 60% 30% 70%;
+    animation: blob-morph 12s ease-in-out infinite;
+}
+
+/* Floating Animations - Enhanced */
+@keyframes float-slow {
+    0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    25% { transform: translateY(-25px) translateX(15px) rotate(5deg); }
+    50% { transform: translateY(-15px) translateX(-20px) rotate(-3deg); }
+    75% { transform: translateY(-30px) translateX(10px) rotate(7deg); }
+}
+
+@keyframes float-medium {
+    0%, 100% { transform: translateY(0px) translateX(0px) scale(1); }
+    33% { transform: translateY(-20px) translateX(-15px) scale(1.05); }
+    66% { transform: translateY(-30px) translateX(20px) scale(0.95); }
+}
+
+@keyframes float-fast {
+    0%, 100% { transform: translateY(0px) translateX(0px) rotate(0deg); }
+    50% { transform: translateY(-35px) translateX(-25px) rotate(10deg); }
+}
+
+@keyframes rotate-float {
+    0% { transform: rotate(15deg) translateY(0px) scale(1); }
+    50% { transform: rotate(195deg) translateY(-25px) scale(1.1); }
+    100% { transform: rotate(375deg) translateY(0px) scale(1); }
+}
+
+@keyframes rotate-float-reverse {
+    0% { transform: rotate(-20deg) translateY(0px) scale(1); }
+    50% { transform: rotate(-200deg) translateY(-20px) scale(1.05); }
+    100% { transform: rotate(-380deg) translateY(0px) scale(1); }
+}
+
+@keyframes triangle-float {
+    0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+    25% { transform: translateY(-20px) rotate(8deg) scale(1.1); }
+    50% { transform: translateY(-12px) rotate(-5deg) scale(0.9); }
+    75% { transform: translateY(-25px) rotate(10deg) scale(1.05); }
+}
+
+@keyframes triangle-float-reverse {
+    0%, 100% { transform: translateY(0px) rotate(0deg) scale(1); }
+    33% { transform: translateY(-15px) rotate(-6deg) scale(1.08); }
+    66% { transform: translateY(-22px) rotate(8deg) scale(0.95); }
+}
+
+@keyframes blob-morph {
+    0%, 100% { 
+        border-radius: 50% 40% 60% 30%; 
+        transform: translateY(0px) rotate(0deg); 
+    }
+    25% { 
+        border-radius: 30% 60% 40% 50%; 
+        transform: translateY(-15px) rotate(5deg); 
+    }
+    50% { 
+        border-radius: 60% 30% 50% 40%; 
+        transform: translateY(-8px) rotate(-3deg); 
+    }
+    75% { 
+        border-radius: 40% 50% 30% 60%; 
+        transform: translateY(-20px) rotate(7deg); 
+    }
+}
+
+@keyframes blob-morph-reverse {
+    0%, 100% { 
+        border-radius: 40% 60% 30% 50%; 
+        transform: translateY(0px) scale(1); 
+    }
+    33% { 
+        border-radius: 60% 30% 50% 40%; 
+        transform: translateY(-12px) scale(1.05); 
+    }
+    66% { 
+        border-radius: 30% 50% 60% 30%; 
+        transform: translateY(-18px) scale(0.95); 
+    }
+}
+
+@keyframes line-move {
+    0% { transform: translateX(-100px); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateX(calc(100vw + 100px)); opacity: 0; }
+}
+
+@keyframes line-move-reverse {
+    0% { transform: translateX(150px); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateX(calc(-100vw - 150px)); opacity: 0; }
+}
+
+@keyframes dot-twinkle {
+    0%, 100% { opacity: 0.4; transform: scale(1); }
+    50% { opacity: 1; transform: scale(1.8); }
+}
+
+/* Carousel */
+.carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+}
+
+/* Slides */
+.slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transform: scale(1.05);
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    display: flex;
+    align-items: center;
+}
+
+.slide.active {
+    opacity: 1;
+    transform: scale(1);
+}
+
+/* Media Container */
+.media-container {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.slide-media {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+}
+
+.slide.active .slide-media {
+    transform: scale(1.02);
+}
+
+.gradient-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        135deg,
+        rgba(30, 64, 175, 0.8) 0%,
+        rgba(13, 148, 136, 0.6) 50%,
+        rgba(249, 115, 22, 0.4) 100%
+    );
+}
+
+/* Content Wrapper */
+.content-wrapper {
+    position: relative;
+    z-index: 3;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    padding: 0 5%;
+}
+
+.slide-content {
+    max-width: 600px;
+    color: white;
+    transform: translateY(50px);
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.slide.active .slide-content {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: 0.3s;
+}
+
+/* Typography */
+.slide-title {
+    font-size: clamp(2.5rem, 5vw, 4rem);
+    font-weight: 700;
+    line-height: 1.1;
+    margin-bottom: 24px;
+    transform: translateY(30px);
+    opacity: 0;
+    transition: all 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.slide.active .slide-title {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: 0.5s;
+}
+
+.slide-description {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin-bottom: 32px;
+    line-height: 1.7;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.slide.active .slide-description {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: 0.7s;
+}
+
+/* CTA Buttons */
+.cta-buttons {
+    display: flex;
+    gap: 16px;
+    transform: translateY(20px);
+    opacity: 0;
+    transition: all 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+}
+
+.slide.active .cta-buttons {
+    transform: translateY(0);
+    opacity: 1;
+    transition-delay: 0.8s;
+}
+
+.cta-primary, .cta-secondary {
+    padding: 16px 32px;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 16px;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    position: relative;
+    overflow: hidden;
+}
+
+.cta-primary {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 100%);
+    color: white;
+    box-shadow: 0 8px 32px rgba(249, 115, 22, 0.3);
+}
+
+.cta-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 12px 40px rgba(249, 115, 22, 0.4);
+}
+
+.cta-secondary {
+    background: rgba(255, 255, 255, 0.2);
+    color: white;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    backdrop-filter: blur(10px);
+}
+
+.cta-secondary:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-2px);
+}
+
+.cta-icon {
+    width: 20px;
+    height: 20px;
+    transition: transform 0.3s ease;
+}
+
+.cta-primary:hover .cta-icon {
+    transform: translateX(4px);
+}
+
+/* Bottom Navigation */
+.bottom-navigation {
+    position: absolute;
+    bottom: 32px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    align-items: center;
+    gap: 32px;
+    z-index: 4;
+}
+
+/* Navigation Arrows - Subtle Design */
+.nav-arrows {
+    display: flex;
+    gap: 16px;
+}
+
+.nav-btn {
+    width: 44px;
+    height: 44px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    opacity: 0.6;
+}
+
+.nav-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.9);
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.nav-btn svg {
+    width: 18px;
+    height: 18px;
+}
+
+/* Dot Indicators */
+.dot-indicators {
+    display: flex;
+    gap: 12px;
+}
+
+.dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.4);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.dot.active {
+    background: #f97316;
+    transform: scale(1.2);
+}
+
+.dot:hover {
+    background: rgba(255, 255, 255, 0.7);
+}
+
+/* Play/Pause Button */
+.play-pause-btn {
+    width: 40px;
+    height: 40px;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 50%;
+    color: rgba(255, 255, 255, 0.7);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    opacity: 0.6;
+}
+
+.play-pause-btn:hover {
+    background: rgba(255, 255, 255, 0.15);
+    color: rgba(255, 255, 255, 0.9);
+    opacity: 1;
+    transform: scale(1.05);
+}
+
+.play-pause-btn svg {
+    width: 16px;
+    height: 16px;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Progress Bar */
+.progress-bar {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.2);
+    z-index: 4;
+}
+
+.progress-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #f97316, #ea580c);
+    width: 0%;
+    transition: width 0.3s ease;
+}
+
+/* Mobile Responsive Design */
+@media (max-width: 768px) {
+    .content-wrapper {
+        padding: 0 20px;
+    }
+    
+    .slide-content {
+        max-width: 100%;
+    }
+    
+    .slide-title {
+        font-size: 2.5rem;
+        margin-bottom: 20px;
+    }
+    
+    .slide-description {
+        font-size: 1.125rem;
+        margin-bottom: 24px;
+    }
+    
+    .cta-buttons {
+        flex-direction: column;
+        gap: 12px;
+    }
+    
+    .cta-primary, .cta-secondary {
+        width: 100%;
+        justify-content: center;
+        padding: 14px 24px;
+    }
+    
+    .bottom-navigation {
+        gap: 24px;
+        bottom: 24px;
+    }
+    
+    .nav-btn {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .nav-btn svg {
+        width: 16px;
+        height: 16px;
+    }
+    
+    .play-pause-btn {
+        width: 36px;
+        height: 36px;
+    }
+    
+    .play-pause-btn svg {
+        width: 14px;
+        height: 14px;
+    }
+    
+    /* Scale down floating elements on mobile but keep them visible */
+    .floating-elements .circle-1,
+    .floating-elements .square-1,
+    .floating-elements .blob-1 {
+        transform: scale(0.7);
+    }
+    
+    .floating-elements .circle-2,
+    .floating-elements .square-2,
+    .floating-elements .blob-2 {
+        transform: scale(0.8);
+    }
+    
+    .floating-elements .triangle-1,
+    .floating-elements .triangle-2 {
+        transform: scale(0.6);
+    }
+}
+
+@media (max-width: 480px) {
+    .slide-title {
+        font-size: 2rem;
+    }
+    
+    .slide-description {
+        font-size: 1rem;
+    }
+    
+    .cta-primary, .cta-secondary {
+        padding: 12px 20px;
+        font-size: 15px;
+    }
+    
+    .bottom-navigation {
+        gap: 20px;
+    }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+    .nav-btn:hover, .play-pause-btn:hover, .dot:hover, .cta-primary:hover, .cta-secondary:hover {
+        transform: none;
+    }
+    
+    .nav-btn:active, .play-pause-btn:active {
+        transform: scale(0.95);
+    }
+    
+    .cta-primary:active, .cta-secondary:active {
+        transform: scale(0.98);
+    }
+}

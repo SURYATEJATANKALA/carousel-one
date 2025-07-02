@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Professional Carousel</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="carousel-container">
+        <!-- Enhanced Floating Design Elements -->
+        <div class="floating-elements">
+            <div class="floating-circle circle-1"></div>
+            <div class="floating-circle circle-2"></div>
+            <div class="floating-circle circle-3"></div>
+            <div class="floating-square square-1"></div>
+            <div class="floating-square square-2"></div>
+            <div class="floating-triangle triangle-1"></div>
+            <div class="floating-triangle triangle-2"></div>
+            <div class="floating-blob blob-1"></div>
+            <div class="floating-blob blob-2"></div>
+            <div class="floating-line line-1"></div>
+            <div class="floating-line line-2"></div>
+            <div class="floating-dot dot-1"></div>
+            <div class="floating-dot dot-2"></div>
+            <div class="floating-dot dot-3"></div>
+            <div class="floating-dot dot-4"></div>
+        </div>
+
+        <!-- Main Carousel -->
+        <div class="carousel" id="carousel">
+            <!-- Slide 1 - Image -->
+            <div class="slide active" data-slide="0">
+                <div class="media-container">
+                    <video class="slide-media" autoplay muted loop>
+                        <source src="../images/Corrosal_one.mp4" type="video/mp4" >
+                    </video>
+                    <div class="gradient-overlay"></div>
+                </div>
+                <div class="content-wrapper">
+                    <div class="slide-content">
+                        <h1 class="slide-title">Transform Your Future</h1>
+                        <p class="slide-description">Unlock your potential with our comprehensive learning solutions designed for modern professionals and ambitious learners.</p>
+                        <div class="cta-buttons">
+                            <button class="cta-primary">
+                                Start Learning
+                                <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12,5 19,12 12,19"></polyline>
+                                </svg>
+                            </button>
+                            <button class="cta-secondary">View Courses</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 2 - Video -->
+            <div class="slide" data-slide="1">
+                <div class="media-container">
+                    <video class="slide-media" autoplay muted loop>
+                        <source src="../images/Corrosal_two.mp4" type="video/mp4">
+                    </video>
+                    <div class="gradient-overlay"></div>
+                </div>
+                <div class="content-wrapper">
+                    <div class="slide-content">
+                        <h1 class="slide-title">Innovation in Action</h1>
+                        <p class="slide-description">Discover how leading companies are transforming their operations with cutting-edge technology and innovative solutions.</p>
+                        <div class="cta-buttons">
+                            <button class="cta-primary">
+                                Watch Demo
+                                <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <polygon points="5,3 19,12 5,21 5,3"></polygon>
+                                </svg>
+                            </button>
+                            <button class="cta-secondary">Learn More</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 3 - Image -->
+            <div class="slide" data-slide="2">
+                <div class="media-container">
+                    <video class="slide-media"autoplay muted loop>
+                        <source src="../images/Corrosal_three.mp4" type="video/mp4">
+                    </video>
+                    <div class="gradient-overlay"></div>
+                </div>
+                <div class="content-wrapper">
+                    <div class="slide-content">
+                        <h1 class="slide-title">Expert Guidance</h1>
+                        <p class="slide-description">Connect with industry experts and accelerate your career with personalized mentorship programs and professional development.</p>
+                        <div class="cta-buttons">
+                            <button class="cta-primary">
+                                Find Mentors
+                                <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12,5 19,12 12,19"></polyline>
+                                </svg>
+                            </button>
+                            <button class="cta-secondary">Join Community</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Slide 4 - Image -->
+            <div class="slide" data-slide="3">
+                <div class="media-container">
+                    <video class="slide-media"autoplay muted loop>
+                        <source src="../images/Corrosal_two.mp4" type="video/mp4">
+                    </video>
+                    <div class="gradient-overlay"></div>
+                </div>
+                <div class="content-wrapper">
+                    <div class="slide-content">
+                        <h1 class="slide-title">Global Network</h1>
+                        <p class="slide-description">Join thousands of learners worldwide in our collaborative educational ecosystem and expand your professional network.</p>
+                        <div class="cta-buttons">
+                            <button class="cta-primary">
+                                Join Network
+                                <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                                    <line x1="5" y1="12" x2="19" y2="12"></line>
+                                    <polyline points="12,5 19,12 12,19"></polyline>
+                                </svg>
+                            </button>
+                            <button class="cta-secondary">Explore</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Bottom Navigation Controls -->
+        <div class="bottom-navigation">
+            <!-- Navigation Arrows -->
+            <div class="nav-arrows">
+                <button class="nav-btn prev-btn" id="prevBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="15,18 9,12 15,6"></polyline>
+                    </svg>
+                </button>
+                <button class="nav-btn next-btn" id="nextBtn">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <polyline points="9,18 15,12 9,6"></polyline>
+                    </svg>
+                </button>
+            </div>
+
+            <!-- Dot Indicators -->
+            <div class="dot-indicators" id="dotIndicators">
+                <button class="dot active" data-slide="0"></button>
+                <button class="dot" data-slide="1"></button>
+                <button class="dot" data-slide="2"></button>
+                <button class="dot" data-slide="3"></button>
+            </div>
+
+            <!-- Play/Pause Button -->
+            <button class="play-pause-btn" id="playPauseBtn">
+                <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <polygon points="5,3 19,12 5,21 5,3"></polygon>
+                </svg>
+                <svg class="pause-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <rect x="6" y="4" width="4" height="16"></rect>
+                    <rect x="14" y="4" width="4" height="16"></rect>
+                </svg>
+            </button>
+        </div>
+
+        <!-- Progress Bar -->
+        <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+        </div>
+    </div>
+
+    <script src="./script.js"></script>
+</body>
+</html>
