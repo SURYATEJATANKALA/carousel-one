@@ -10,6 +10,7 @@
   --primary-purple: rgb(58, 29, 100);
   --primary-pink: rgb(157, 29, 89);
   --primary-orange: rgb(222, 63, 15);
+  --primary-white: rgb(255, 255, 255);
   
   /* Secondary Colors */
   --secondary-pink: rgb(214, 116, 127);
@@ -28,7 +29,8 @@
   --gradient-primary: linear-gradient(135deg, var(--primary-purple), var(--primary-pink));
   --gradient-secondary: linear-gradient(135deg, var(--primary-pink), var(--primary-orange));
   --gradient-accent: linear-gradient(135deg, var(--secondary-pink), var(--secondary-red));
-  
+  --gradient-fourth: linear-gradient(135deg, var(--primary-white), var(--primary-orange));
+
   /* Typography */
   --font-family: 'Inter', system-ui, -apple-system, sans-serif;
   --font-size-base: 1rem;
@@ -60,11 +62,11 @@ body {
 /* Navbar Styles */
 .custom-navbar {
   background: transparent;
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(15px);
+  -webkit-backdrop-filter: blur(15px);
   transition: all var(--transition-normal);
   z-index: 1000;
-  padding: var(--spacing-md) 0;
+  padding: var(--spacing-sm) 0;
 }
 
 .custom-navbar.scrolled {
@@ -100,7 +102,7 @@ body {
 }
 
 .logo-placeholder img {
-  height: 40px;
+  height: 80px;
   width: auto;
 }
 
@@ -470,7 +472,7 @@ body {
   font-weight: 700;
   line-height: var(--line-height-heading);
   margin-bottom: var(--spacing-lg);
-  background: var(--gradient-secondary);
+  background: var(--gradient-fourth);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
