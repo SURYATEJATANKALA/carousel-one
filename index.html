@@ -1,181 +1,317 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Modern Professional Carousel</title>
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Ramaiah Institute of Management | Bengaluru</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link rel="stylesheet" href="./style.css">
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-</head>
-<body>
-    <div class="carousel-container">
-        <!-- Enhanced Floating Design Elements -->
-        <div class="floating-elements">
-            <div class="floating-circle circle-1"></div>
-            <div class="floating-circle circle-2"></div>
-            <div class="floating-circle circle-3"></div>
-            <div class="floating-square square-1"></div>
-            <div class="floating-square square-2"></div>
-            <div class="floating-triangle triangle-1"></div>
-            <div class="floating-triangle triangle-2"></div>
-            <div class="floating-blob blob-1"></div>
-            <div class="floating-blob blob-2"></div>
-            <div class="floating-line line-1"></div>
-            <div class="floating-line line-2"></div>
-            <div class="floating-dot dot-1"></div>
-            <div class="floating-dot dot-2"></div>
-            <div class="floating-dot dot-3"></div>
-            <div class="floating-dot dot-4"></div>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <nav class="navbar navbar-expand-lg fixed-top custom-navbar" id="mainNavbar">
+      <div class="container">
+        <div class="navbar-left">
+          <a class="navbar-brand" href="#" id="navbarBrand">
+            <div class="logo-placeholder">
+              <img src="./logo-1.png" alt="Ramaiah Logo" srcset="">
+            </div>
+          </a>
         </div>
 
-        <!-- Main Carousel -->
-        <div class="carousel" id="carousel">
-            <!-- Slide 1 - Image -->
-            <div class="slide active" data-slide="0">
-                <div class="media-container">
-                    <video class="slide-media" autoplay muted loop>
-                        <source src="../Corrosal_one.mp4" type="video/mp4" >
-                    </video>
-                    <div class="gradient-overlay"></div>
-                </div>
-                <div class="content-wrapper">
-                    <div class="slide-content">
-                        <h1 class="slide-title">Transform Your Future</h1>
-                        <p class="slide-description">Unlock your potential with our comprehensive learning solutions designed for modern professionals and ambitious learners.</p>
-                        <div class="cta-buttons">
-                            <button class="cta-primary">
-                                Start Learning
-                                <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12,5 19,12 12,19"></polyline>
-                                </svg>
-                            </button>
-                            <button class="cta-secondary">View Courses</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 2 - Video -->
-            <div class="slide" data-slide="1">
-                <div class="media-container">
-                    <video class="slide-media" autoplay muted loop>
-                        <source src="../Corrosal_two.mp4" type="video/mp4">
-                    </video>
-                    <div class="gradient-overlay"></div>
-                </div>
-                <div class="content-wrapper">
-                    <div class="slide-content">
-                        <h1 class="slide-title">Innovation in Action</h1>
-                        <p class="slide-description">Discover how leading companies are transforming their operations with cutting-edge technology and innovative solutions.</p>
-                        <div class="cta-buttons">
-                            <button class="cta-primary">
-                                Watch Demo
-                                <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <polygon points="5,3 19,12 5,21 5,3"></polygon>
-                                </svg>
-                            </button>
-                            <button class="cta-secondary">Learn More</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 3 - Image -->
-            <div class="slide" data-slide="2">
-                <div class="media-container">
-                    <video class="slide-media"autoplay muted loop>
-                        <source src="../Corrosal_three.mp4" type="video/mp4">
-                    </video>
-                    <div class="gradient-overlay"></div>
-                </div>
-                <div class="content-wrapper">
-                    <div class="slide-content">
-                        <h1 class="slide-title">Expert Guidance</h1>
-                        <p class="slide-description">Connect with industry experts and accelerate your career with personalized mentorship programs and professional development.</p>
-                        <div class="cta-buttons">
-                            <button class="cta-primary">
-                                Find Mentors
-                                <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12,5 19,12 12,19"></polyline>
-                                </svg>
-                            </button>
-                            <button class="cta-secondary">Join Community</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Slide 4 - Image -->
-            <div class="slide" data-slide="3">
-                <div class="media-container">
-                    <video class="slide-media"autoplay muted loop>
-                        <source src="../Corrosal_two.mp4" type="video/mp4">
-                    </video>
-                    <div class="gradient-overlay"></div>
-                </div>
-                <div class="content-wrapper">
-                    <div class="slide-content">
-                        <h1 class="slide-title">Global Network</h1>
-                        <p class="slide-description">Join thousands of learners worldwide in our collaborative educational ecosystem and expand your professional network.</p>
-                        <div class="cta-buttons">
-                            <button class="cta-primary">
-                                Join Network
-                                <svg class="cta-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                                    <line x1="5" y1="12" x2="19" y2="12"></line>
-                                    <polyline points="12,5 19,12 12,19"></polyline>
-                                </svg>
-                            </button>
-                            <button class="cta-secondary">Explore</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <button class="navbar-action-btn">
+          <i class="fas fa-play"></i>
+          <span>Campus Tour</span>
+        </button>
+        
+        <div class="navbar-nav-wrapper">
+          <ul class="navbar-nav me-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                About Us
+                <i class="fas fa-chevron-down dropdown-arrow"></i>
+              </a>
+              <ul class="dropdown-menu custom-dropdown" aria-labelledby="servicesDropdown">
+                <li><a class="dropdown-item" href="#web-design">About MSRIM</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#development">Dean's Message</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#consulting">Governance</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#all-services">Vision & Mission</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#all-services">Accreditations</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#all-services">Awards & Recognition</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#all-services">PEO's & PO's</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#all-services">All Services</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Programs
+                <i class="fas fa-chevron-down dropdown-arrow"></i>
+              </a>
+              <ul class="dropdown-menu custom-dropdown" aria-labelledby="servicesDropdown">
+                <li><a class="dropdown-item" href="#web-design">PGDM - Two year full Time</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#development">PGDM with one semester abroad</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#consulting">FPM</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#all-services">PGDM - IEV</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#all-services">Xceed Education</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#all-services">All Services</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Faculty</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Placements</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Centres
+                <i class="fas fa-chevron-down dropdown-arrow"></i>
+              </a>
+              <ul class="dropdown-menu custom-dropdown" aria-labelledby="resourcesDropdown">
+                <li><a class="dropdown-item" href="#blog">Centre for Leadership</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#documentation">Case Centre</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#tutorials">BCIC</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#support">Consultancy</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#support">Centre for Entrepreneurship</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Admissions</a>
+            </li>
+          </ul>
+          
+          <button class="navbar-toggler" type="button" id="navbarToggler">
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+            <span class="hamburger-line"></span>
+          </button>
         </div>
+      </div>
+    </nav>
 
-        <!-- Bottom Navigation Controls -->
-        <div class="bottom-navigation">
-            <!-- Navigation Arrows -->
-            <div class="nav-arrows">
-                <button class="nav-btn prev-btn" id="prevBtn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="15,18 9,12 15,6"></polyline>
-                    </svg>
-                </button>
-                <button class="nav-btn next-btn" id="nextBtn">
-                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                        <polyline points="9,18 15,12 9,6"></polyline>
-                    </svg>
-                </button>
-            </div>
-
-            <!-- Dot Indicators -->
-            <div class="dot-indicators" id="dotIndicators">
-                <button class="dot active" data-slide="0"></button>
-                <button class="dot" data-slide="1"></button>
-                <button class="dot" data-slide="2"></button>
-                <button class="dot" data-slide="3"></button>
-            </div>
-
-            <!-- Play/Pause Button -->
-            <button class="play-pause-btn" id="playPauseBtn">
-                <svg class="play-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <polygon points="5,3 19,12 5,21 5,3"></polygon>
-                </svg>
-                <svg class="pause-icon hidden" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <rect x="6" y="4" width="4" height="16"></rect>
-                    <rect x="14" y="4" width="4" height="16"></rect>
-                </svg>
-            </button>
-        </div>
-
-        <!-- Progress Bar -->
-        <div class="progress-bar">
-            <div class="progress-fill" id="progressFill"></div>
-        </div>
+    <!-- Mobile Menu Overlay -->
+    <div class="mobile-menu-overlay" id="mobileMenuOverlay">
+      <div class="mobile-menu-content">
+        <button class="mobile-menu-close" id="mobileMenuClose">
+          <i class="fas fa-times"></i>
+        </button>
+        <ul class="mobile-nav-links">
+          <li class="nav-item">
+              <a class="nav-link" href="#home">Home</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                About Us
+                <i class="fas fa-chevron-down dropdown-arrow"></i>
+              </a>
+              <ul class="dropdown-menu custom-dropdown" aria-labelledby="servicesDropdown">
+                <li><a class="dropdown-item" href="#web-design">About MSRIM</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#development">Dean's Message</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#consulting">Governance</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#all-services">Vision & Mission</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#all-services">Accreditations</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#all-services">Awards & Recognition</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#all-services">PEO's & PO's</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#all-services">All Services</a></li>
+              </ul>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="servicesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Programs
+                <i class="fas fa-chevron-down dropdown-arrow"></i>
+              </a>
+              <ul class="dropdown-menu custom-dropdown" aria-labelledby="servicesDropdown">
+                <li><a class="dropdown-item" href="#web-design">PGDM - Two year full Time</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#development">PGDM with one semester abroad</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#consulting">FPM</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#all-services">PGDM - IEV</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#all-services">Xceed Education</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#all-services">All Services</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Faculty</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Placements</a>
+            </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="resourcesDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                Centres
+                <i class="fas fa-chevron-down dropdown-arrow"></i>
+              </a>
+              <ul class="dropdown-menu custom-dropdown" aria-labelledby="resourcesDropdown">
+                <li><a class="dropdown-item" href="#blog">Centre for Leadership</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#documentation">Case Centre</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#tutorials">BCIC</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#support">Consultancy</a></li>
+                <li><hr class="dropdown-divider"></li>
+                <li><a class="dropdown-item" href="#support">Centre for Entrepreneurship</a></li>
+              </ul>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="#home">Admissions</a>
+            </li>
+        </ul>
+      </div>
     </div>
 
-    <script src="./script.js"></script>
-</body>
+    <!-- Carousel Section -->
+    <section class="carousel-section" id="heroCarousel">
+      <div class="carousel-container">
+        <!-- Slide 1 -->
+        <div class="carousel-slide active" data-slide="0">
+          <div class="slide-background">
+            <video muted loop playsinline class="background-video">
+              <source src="./Corrosal_one.mp4" type="video/mp4">
+            </video>
+            <div class="slide-overlay"></div>
+          </div>
+          <div class="slide-content">
+            <div class="container">
+              <div class="row align-items-center min-vh-100">
+                <div class="col-lg-8 col-xl-7">
+                  <div class="content-wrapper slide-content-left">
+                    <h1 class="slide-heading fade-in">Where Knowledge Meets Opportunity</h1>
+                    <p class="slide-tagline fade-in-up">Building leaders, one book at a time.</p>
+                    <div class="slide-buttons fade-in-up">
+                      <a href="#" class="cta-button primary">Apply Now</a>
+                      <a href="#" class="cta-button secondary">Know More</a>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-lg-4 col-xl-5">
+                  <div class="design-elements">
+                    <div class="circle-element circle-1"></div>
+                    <div class="square-element square-1"></div>
+                    <div class="lined-circle-element lined-circle-1"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 2 -->
+        <div class="carousel-slide" data-slide="1">
+          <div class="slide-background">
+            <video muted loop playsinline class="background-video">
+              <source src="./Corrosal_two.mp4" type="video/mp4">
+            </video>
+            <div class="slide-overlay"></div>
+          </div>
+          <div class="slide-content">
+            <div class="container">
+              <div class="row align-items-center min-vh-100">
+                <div class="col-lg-4 col-xl-5">
+                  <div class="design-elements">
+                    <div class="circle-element circle-2"></div>
+                    <div class="square-element square-2"></div>
+                    <div class="lined-circle-element lined-circle-2"></div>
+                  </div>
+                </div>
+                <div class="col-lg-8 col-xl-7">
+                  <div class="content-wrapper slide-content-right">
+                    <h1 class="slide-heading slide-up">Celebrating Excellence & Achievement</h1>
+                    <p class="slide-tagline fade-in">Turning potential into performance</p>
+                    <div class="slide-buttons fade-in">
+                      <a href="#" class="cta-button primary">Apply Now</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Slide 3 -->
+        <div class="carousel-slide" data-slide="2">
+          <div class="slide-background">
+            <video muted loop playsinline class="background-video">
+              <source src="./Corrosal_three.mp4" type="video/mp4">
+            </video>
+            <div class="slide-overlay"></div>
+          </div>
+          <div class="slide-content">
+            <div class="container">
+              <div class="row align-items-center min-vh-100">
+                <div class="col-12">
+                  <div class="content-wrapper slide-content-center">
+                    <h1 class="slide-heading fade-in">Beyond Classrooms, Beyond Boundaries</h1>
+                    <p class="slide-tagline slide-up">Learning, collaborating, growing — together.</p>
+                    <div class="slide-buttons fade-in-up">
+                      <a href="#" class="cta-button primary">Join Us</a>
+                      <a href="#" class="cta-button secondary">Know More</a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="design-elements center-elements">
+              <div class="circle-element circle-3"></div>
+              <div class="square-element square-3"></div>
+              <div class="lined-circle-element lined-circle-3"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Carousel Navigation -->
+      <div class="carousel-nav">
+        <button class="carousel-nav-btn prev" id="prevBtn">
+          <i class="fas fa-chevron-left"></i>
+        </button>
+        <button class="carousel-nav-btn next" id="nextBtn">
+          <i class="fas fa-chevron-right"></i>
+        </button>
+      </div>
+
+      <!-- Carousel Indicators -->
+      <div class="carousel-indicators">
+        <button class="indicator active" data-slide="0"></button>
+        <button class="indicator" data-slide="1"></button>
+        <button class="indicator" data-slide="2"></button>
+      </div>
+    </section>
+
+    <!-- Bootstrap JS -->
+     <script type="module" src="./script.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
 </html>

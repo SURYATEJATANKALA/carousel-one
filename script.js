@@ -1,318 +1,378 @@
-class ModernCarousel {
-    constructor() {
-        this.currentSlide = 0;
-        this.totalSlides = 4;
-        this.isPlaying = true;
-        this.slideInterval = null;
-        this.slideDuration = 5000; // 5 seconds
-        this.progressInterval = null;
-        
-        this.carousel = document.getElementById('carousel');
-        this.slides = document.querySelectorAll('.slide');
-        this.dots = document.querySelectorAll('.dot');
-        this.prevBtn = document.getElementById('prevBtn');
-        this.nextBtn = document.getElementById('nextBtn');
-        this.playPauseBtn = document.getElementById('playPauseBtn');
-        this.progressFill = document.getElementById('progressFill');
-        
-        this.init();
-    }
+// Main JavaScript for Modern Navbar & Carousel
+
+class ModernNavbarCarousel {
+  constructor() {
+    this.currentSlide = 0;
+    this.slides = document.querySelectorAll('.carousel-slide');
+    this.indicators = document.querySelectorAll('.indicator');
+    this.totalSlides = this.slides.length;
+    this.autoSlideInterval = null;
+    this.slideTransitionTime = 8000; // 8 seconds per slide
+    this.isTransitioning = false;
     
-    init() {
-        this.bindEvents();
-        this.startAutoPlay();
-        this.startProgressBar();
-        this.handleVideoSlides();
-        
-        // Touch/swipe support
-        this.addTouchSupport();
-        
-        // Show that auto-play is active
-        console.log('Carousel initialized with auto-play enabled');
-    }
+    this.init();
+  }
+
+  init() {
+    this.setupNavbar();
+    this.setupMobileMenu();
+    this.setupDropdowns();
+    this.setupCarousel();
+    this.startAutoSlide();
+    this.setupVideoEvents();
+  }
+
+  // Navbar functionality
+  setupNavbar() {
+    const navbar = document.getElementById('mainNavbar');
+    const navbarBrand = document.getElementById('navbarBrand');
     
-    bindEvents() {
-        // Navigation buttons
-        this.prevBtn.addEventListener('click', () => this.prevSlide());
-        this.nextBtn.addEventListener('click', () => this.nextSlide());
+    // Handle navbar scroll effect
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', (e) => {
+        e.preventDefault();
+        const targetId = anchor.getAttribute('href');
+        const targetElement = document.querySelector(targetId);
         
-        // Play/pause button
-        this.playPauseBtn.addEventListener('click', () => this.togglePlayPause());
-        
-        // Dot indicators
-        this.dots.forEach((dot, index) => {
-            dot.addEventListener('click', () => this.goToSlide(index));
-        });
-        
-        // Keyboard navigation
-        document.addEventListener('keydown', (e) => {
-            switch(e.key) {
-                case 'ArrowLeft':
-                    this.prevSlide();
-                    break;
-                case 'ArrowRight':
-                    this.nextSlide();
-                    break;
-                case ' ':
-                    e.preventDefault();
-                    this.togglePlayPause();
-                    break;
-            }
-        });
-        
-        // Pause on hover
-        this.carousel.addEventListener('mouseenter', () => {
-            if (this.isPlaying) {
-                this.pauseAutoPlay();
-                this.pauseProgressBar();
-            }
-        });
-        
-        this.carousel.addEventListener('mouseleave', () => {
-            if (this.isPlaying) {
-                this.startAutoPlay();
-                this.startProgressBar();
-            }
-        });
-        
-        // Handle visibility change (pause when tab is not active)
-        document.addEventListener('visibilitychange', () => {
-            if (document.hidden) {
-                this.pauseAutoPlay();
-                this.pauseProgressBar();
-            } else if (this.isPlaying) {
-                this.startAutoPlay();
-                this.startProgressBar();
-            }
-        });
-    }
-    
-    goToSlide(index) {
-        // Remove active class from current slide and dot
-        this.slides[this.currentSlide].classList.remove('active');
-        this.dots[this.currentSlide].classList.remove('active');
-        
-        // Pause current video if it's a video slide
-        this.pauseCurrentVideo();
-        
-        // Update current slide
-        this.currentSlide = index;
-        
-        // Add active class to new slide and dot
-        this.slides[this.currentSlide].classList.add('active');
-        this.dots[this.currentSlide].classList.add('active');
-        
-        // Play new video if it's a video slide
-        this.playCurrentVideo();
-        
-        // Reset progress bar
-        this.resetProgressBar();
-        
-        // Restart autoplay if it's playing
-        if (this.isPlaying) {
-            this.startAutoPlay();
+        if (targetElement) {
+          targetElement.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
         }
+      });
+    });
+  }
+
+  // Mobile menu functionality
+  setupMobileMenu() {
+    const navbarToggler = document.getElementById('navbarToggler');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
+    const mobileMenuClose = document.getElementById('mobileMenuClose');
+    const mobileNavLinks = document.querySelectorAll('.mobile-nav-links a');
+
+    // Toggle mobile menu
+    navbarToggler.addEventListener('click', () => {
+      navbarToggler.classList.toggle('active');
+      mobileMenuOverlay.classList.toggle('active');
+      document.body.style.overflow = mobileMenuOverlay.classList.contains('active') ? 'hidden' : '';
+    });
+
+    // Close mobile menu
+    mobileMenuClose.addEventListener('click', () => {
+      this.closeMobileMenu();
+    });
+
+    // Close mobile menu when clicking overlay
+    mobileMenuOverlay.addEventListener('click', (e) => {
+      if (e.target === mobileMenuOverlay) {
+        this.closeMobileMenu();
+      }
+    });
+
+    // Close mobile menu when clicking nav links (except dropdown toggles)
+    mobileNavLinks.forEach(link => {
+      if (!link.classList.contains('mobile-dropdown-toggle')) {
+        link.addEventListener('click', () => {
+          this.closeMobileMenu();
+        });
+      }
+    });
+
+    // Close mobile menu on escape key
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && mobileMenuOverlay.classList.contains('active')) {
+        this.closeMobileMenu();
+      }
+    });
+  }
+
+  // Setup mobile dropdowns
+  setupDropdowns() {
+    const mobileDropdownToggles = document.querySelectorAll('.mobile-dropdown-toggle');
+    
+    mobileDropdownToggles.forEach(toggle => {
+      toggle.addEventListener('click', (e) => {
+        e.preventDefault();
+        const dropdown = toggle.closest('.mobile-dropdown');
+        const isActive = dropdown.classList.contains('active');
         
-        console.log(`Switched to slide ${index + 1}`);
-    }
-    
-    nextSlide() {
-        const nextIndex = (this.currentSlide + 1) % this.totalSlides;
-        this.goToSlide(nextIndex);
-    }
-    
-    prevSlide() {
-        const prevIndex = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
-        this.goToSlide(prevIndex);
-    }
-    
-    startAutoPlay() {
-        this.clearAutoPlay();
-        this.slideInterval = setInterval(() => {
-            console.log('Auto-advancing to next slide');
-            this.nextSlide();
-        }, this.slideDuration);
-    }
-    
-    pauseAutoPlay() {
-        this.clearAutoPlay();
-    }
-    
-    clearAutoPlay() {
-        if (this.slideInterval) {
-            clearInterval(this.slideInterval);
-            this.slideInterval = null;
+        // Close all other dropdowns
+        document.querySelectorAll('.mobile-dropdown').forEach(dd => {
+          dd.classList.remove('active');
+        });
+        
+        // Toggle current dropdown
+        if (!isActive) {
+          dropdown.classList.add('active');
         }
-    }
+      });
+    });
+  }
+
+  closeMobileMenu() {
+    const navbarToggler = document.getElementById('navbarToggler');
+    const mobileMenuOverlay = document.getElementById('mobileMenuOverlay');
     
-    togglePlayPause() {
-        this.isPlaying = !this.isPlaying;
-        
-        const playIcon = this.playPauseBtn.querySelector('.play-icon');
-        const pauseIcon = this.playPauseBtn.querySelector('.pause-icon');
-        
-        if (this.isPlaying) {
-            playIcon.classList.remove('hidden');
-            pauseIcon.classList.add('hidden');
-            this.startAutoPlay();
-            this.startProgressBar();
-            console.log('Auto-play resumed');
+    navbarToggler.classList.remove('active');
+    mobileMenuOverlay.classList.remove('active');
+    document.body.style.overflow = '';
+    
+    // Close all mobile dropdowns
+    document.querySelectorAll('.mobile-dropdown').forEach(dropdown => {
+      dropdown.classList.remove('active');
+    });
+  }
+
+  // Carousel functionality
+  setupCarousel() {
+    const prevBtn = document.getElementById('prevBtn');
+    const nextBtn = document.getElementById('nextBtn');
+
+    // Navigation buttons
+    prevBtn.addEventListener('click', () => {
+      this.prevSlide();
+    });
+
+    nextBtn.addEventListener('click', () => {
+      this.nextSlide();
+    });
+
+    // Indicator buttons
+    this.indicators.forEach((indicator, index) => {
+      indicator.addEventListener('click', () => {
+        this.goToSlide(index);
+      });
+    });
+
+    // Keyboard navigation
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowLeft') {
+        this.prevSlide();
+      } else if (e.key === 'ArrowRight') {
+        this.nextSlide();
+      }
+    });
+
+    // Pause on hover
+    const carouselSection = document.getElementById('heroCarousel');
+    carouselSection.addEventListener('mouseenter', () => {
+      this.pauseAutoSlide();
+    });
+
+    carouselSection.addEventListener('mouseleave', () => {
+      this.startAutoSlide();
+    });
+  }
+
+  // Video event handling
+  setupVideoEvents() {
+    this.slides.forEach((slide, index) => {
+      const video = slide.querySelector('.background-video');
+      if (video) {
+        video.addEventListener('loadedmetadata', () => {
+          // Video duration is now available
+          console.log(`Video ${index + 1} duration: ${video.duration} seconds`);
+        });
+
+        video.addEventListener('ended', () => {
+          // Video has ended, move to next slide
+          this.nextSlide();
+        });
+
+        video.addEventListener('error', (e) => {
+          console.error(`Video ${index + 1} error:`, e);
+        });
+      }
+    });
+  }
+
+  // Slide navigation methods
+  nextSlide() {
+    if (this.isTransitioning) return;
+    
+    this.currentSlide = (this.currentSlide + 1) % this.totalSlides;
+    this.updateSlide();
+    this.resetAutoSlide();
+  }
+
+  prevSlide() {
+    if (this.isTransitioning) return;
+    
+    this.currentSlide = (this.currentSlide - 1 + this.totalSlides) % this.totalSlides;
+    this.updateSlide();
+    this.resetAutoSlide();
+  }
+
+  goToSlide(index) {
+    if (this.isTransitioning || index === this.currentSlide) return;
+    
+    this.currentSlide = index;
+    this.updateSlide();
+    this.resetAutoSlide();
+  }
+
+  updateSlide() {
+    this.isTransitioning = true;
+
+    // Update slides
+    this.slides.forEach((slide, index) => {
+      slide.classList.toggle('active', index === this.currentSlide);
+    });
+
+    // Update indicators
+    this.indicators.forEach((indicator, index) => {
+      indicator.classList.toggle('active', index === this.currentSlide);
+    });
+
+    // Handle video playback
+    this.handleVideoPlayback();
+
+    // Reset transition flag
+    setTimeout(() => {
+      this.isTransitioning = false;
+    }, 500);
+  }
+
+  handleVideoPlayback() {
+    this.slides.forEach((slide, index) => {
+      const video = slide.querySelector('.background-video');
+      if (video) {
+        if (index === this.currentSlide) {
+          video.currentTime = 0;
+          video.play().catch(e => {
+            console.error('Video play error:', e);
+          });
         } else {
-            playIcon.classList.add('hidden');
-            pauseIcon.classList.remove('hidden');
-            this.pauseAutoPlay();
-            this.pauseProgressBar();
-            console.log('Auto-play paused');
+          video.pause();
         }
+      }
+    });
+  }
+
+  // Auto-slide functionality
+  startAutoSlide() {
+    this.pauseAutoSlide();
+    this.autoSlideInterval = setInterval(() => {
+      this.nextSlide();
+    }, this.slideTransitionTime);
+  }
+
+  pauseAutoSlide() {
+    if (this.autoSlideInterval) {
+      clearInterval(this.autoSlideInterval);
+      this.autoSlideInterval = null;
+    }
+  }
+
+  resetAutoSlide() {
+    this.startAutoSlide();
+  }
+
+  // Utility methods
+  getCurrentSlideVideo() {
+    const currentSlideElement = this.slides[this.currentSlide];
+    return currentSlideElement.querySelector('.background-video');
+  }
+
+  // Animation utilities
+  animateText(element, animationType, delay = 0) {
+    setTimeout(() => {
+      element.classList.add(animationType);
+    }, delay);
+  }
+
+  // Responsive utilities
+  handleResize() {
+    // Handle any responsive adjustments
+    const isMobile = window.innerWidth < 768;
+    
+    if (isMobile) {
+      // Mobile-specific adjustments
+      this.slideTransitionTime = 6000; // Shorter transitions on mobile
+    } else {
+      // Desktop-specific adjustments
+      this.slideTransitionTime = 8000;
     }
     
-    startProgressBar() {
-        this.clearProgressBar();
-        this.progressFill.style.width = '0%';
-        
-        let progress = 0;
-        const increment = 100 / (this.slideDuration / 50); // Update every 50ms
-        
-        this.progressInterval = setInterval(() => {
-            progress += increment;
-            if (progress >= 100) {
-                progress = 100;
-                this.clearProgressBar();
-            }
-            this.progressFill.style.width = progress + '%';
-        }, 50);
+    // Close mobile menu if window is resized to desktop
+    if (window.innerWidth > 991) {
+      this.closeMobileMenu();
     }
-    
-    pauseProgressBar() {
-        this.clearProgressBar();
-    }
-    
-    resetProgressBar() {
-        this.clearProgressBar();
-        this.progressFill.style.width = '0%';
-        if (this.isPlaying) {
-            this.startProgressBar();
-        }
-    }
-    
-    clearProgressBar() {
-        if (this.progressInterval) {
-            clearInterval(this.progressInterval);
-            this.progressInterval = null;
-        }
-    }
-    
-    handleVideoSlides() {
-        this.slides.forEach((slide, index) => {
-            const video = slide.querySelector('video');
-            if (video) {
-                video.addEventListener('loadeddata', () => {
-                    if (index === this.currentSlide) {
-                        video.play().catch(e => console.log('Video autoplay failed:', e));
-                    }
-                });
-                
-                video.addEventListener('ended', () => {
-                    if (index === this.currentSlide && this.isPlaying) {
-                        this.nextSlide();
-                    }
-                });
-            }
-        });
-    }
-    
-    playCurrentVideo() {
-        const currentSlideElement = this.slides[this.currentSlide];
-        const video = currentSlideElement.querySelector('video');
-        if (video) {
-            video.currentTime = 0;
-            video.play().catch(e => console.log('Video play failed:', e));
-        }
-    }
-    
-    pauseCurrentVideo() {
-        const currentSlideElement = this.slides[this.currentSlide];
-        const video = currentSlideElement.querySelector('video');
-        if (video) {
-            video.pause();
-        }
-    }
-    
-    addTouchSupport() {
-        let touchStartX = 0;
-        let touchEndX = 0;
-        let touchStartY = 0;
-        let touchEndY = 0;
-        
-        this.carousel.addEventListener('touchstart', (e) => {
-            touchStartX = e.changedTouches[0].screenX;
-            touchStartY = e.changedTouches[0].screenY;
-        });
-        
-        this.carousel.addEventListener('touchend', (e) => {
-            touchEndX = e.changedTouches[0].screenX;
-            touchEndY = e.changedTouches[0].screenY;
-            this.handleSwipe();
-        });
-        
-        const handleSwipe = () => {
-            const deltaX = touchEndX - touchStartX;
-            const deltaY = touchEndY - touchStartY;
-            const minSwipeDistance = 50;
-            
-            // Only handle horizontal swipes
-            if (Math.abs(deltaX) > Math.abs(deltaY) && Math.abs(deltaX) > minSwipeDistance) {
-                if (deltaX > 0) {
-                    this.prevSlide();
-                } else {
-                    this.nextSlide();
-                }
-            }
-        };
-        
-        this.handleSwipe = handleSwipe;
-    }
-    
-    // Cleanup method
-    destroy() {
-        this.clearAutoPlay();
-        this.clearProgressBar();
-        
-        // Pause all videos
-        this.slides.forEach(slide => {
-            const video = slide.querySelector('video');
-            if (video) {
-                video.pause();
-            }
-        });
-    }
+  }
 }
 
-// Initialize carousel when DOM is loaded
+// Intersection Observer for animations
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -50px 0px'
+};
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      const element = entry.target;
+      
+      // Add animation classes based on data attributes
+      if (element.classList.contains('fade-in')) {
+        element.style.opacity = '1';
+        element.style.transform = 'translateY(0)';
+      }
+      
+      if (element.classList.contains('slide-up')) {
+        element.style.opacity = '1';
+        element.style.transform = 'translateY(0)';
+      }
+    }
+  });
+}, observerOptions);
+
+// Initialize when DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
-    const carousel = new ModernCarousel();
-    
-    // Expose carousel instance globally for debugging
-    window.carousel = carousel;
-    
-    // Handle page unload
-    window.addEventListener('beforeunload', () => {
-        carousel.destroy();
+  // Initialize the main application
+  const app = new ModernNavbarCarousel();
+  
+  // Set up resize handler
+  window.addEventListener('resize', () => {
+    app.handleResize();
+  });
+  
+  // Set up intersection observer for animations
+  document.querySelectorAll('.fade-in, .slide-up').forEach(el => {
+    observer.observe(el);
+  });
+  
+  // Handle video autoplay issues
+  document.addEventListener('click', () => {
+    const videos = document.querySelectorAll('.background-video');
+    videos.forEach(video => {
+      if (video.paused) {
+        video.play().catch(e => {
+          console.log('Video autoplay prevented:', e);
+        });
+      }
     });
-    
-    // Log initialization
-    console.log('Carousel auto-play started - slides will change every 5 seconds');
+  }, { once: true });
 });
 
-// Handle reduced motion preference
-if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    document.documentElement.style.setProperty('--animation-duration', '0.1s');
-    document.documentElement.style.setProperty('--transition-duration', '0.1s');
-}
-
-// Add error handling for media loading
-document.querySelectorAll('img, video').forEach(media => {
-    media.addEventListener('error', (e) => {
-        console.warn('Media failed to load:', e.target.src);
-    });
+// Performance optimization
+window.addEventListener('beforeunload', () => {
+  // Clean up any intervals or event listeners
+  const videos = document.querySelectorAll('.background-video');
+  videos.forEach(video => {
+    video.pause();
+    video.src = '';
+  });
 });
+
+// Export for potential module use
+export { ModernNavbarCarousel };
